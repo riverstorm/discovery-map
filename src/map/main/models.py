@@ -13,7 +13,7 @@ class Category(models.Model):
 
 class Location(models.Model):
     """
-    Represents the locations 
+    Represents the locations
     """
     name = models.CharField(max_length=250)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
