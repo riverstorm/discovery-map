@@ -1,9 +1,14 @@
-import json, requests
+import json
+import requests
 from django.shortcuts import render
 from django.core import serializers
-from main.models import Category, Location
-from django.http import HttpResponse, Http404, JsonResponse
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from main.models import Category
+from main.models import Location
+from django.http import HttpResponse
+from django.http import Http404
+from django.http import JsonResponse
+from django.http import HttpResponsePermanentRedirect
+from django.http import HttpResponseRedirect
 from django.conf import settings
 
 
@@ -11,7 +16,7 @@ from django.conf import settings
 def index(request):
 
     # Return all locations as querysets
-    return render(request, 'main/index.html', {'maps_key':settings.MAPS_KEY})
+    return render(request, 'main/index.html', {'maps_key': settings.MAPS_KEY})
 
 
 # Returns all locations from the database as JSON to be used as API
@@ -37,8 +42,8 @@ def detail(request, id):
         'v': '20180827'
     }
     # Execute GET request
-    r = requests.get('https://api.foursquare.com/v2/venues/' + 
-        item.foursquare_id + '?locale=en', params=payload)
+    r = requests.get('https://api.foursquare.com/v2/venues/' +
+                     item.foursquare_id + '?locale=en', params=payload)
     # Catch JSON from request
     response = r.json()
 
